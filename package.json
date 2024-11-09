@@ -1,0 +1,61 @@
+{
+  "name": "life-plan-pilot",
+  "author": "s438cb5",
+  "private": true,
+  "version": "0.0.0",
+  "main": "dist/main.electron.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run dev:vite\" \"npm run dev:electron\"",
+    "dev:vite": "cross-env NODE_ENV=development vite",
+    "dev:electron": "tsc -p tsconfig.electron.json && cross-env NODE_ENV=development electron .",
+    "prop": "npm run prop:vite && npm run prop:electron",
+    "prop:vite": "tsc -b && cross-env NODE_ENV=production vite build",
+    "prop:electron": "tsc -p tsconfig.electron.json && cross-env NODE_ENV=production electron .",
+    "lint": "eslint .",
+    "typecheck": "tsc -b",
+    "preview": "vite preview",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@types/electron": "^1.6.12",
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
+    "electron": "^33.1.0",
+    "electron-builder": "^25.1.8",
+    "eslint": "^9.13.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "globals": "^15.11.0",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "^8.11.0",
+    "vite": "^5.4.10"
+  },
+  "build": {
+    "appId": "com.lifeDesignBook",
+    "productName": "LifePlanPilot",
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}
